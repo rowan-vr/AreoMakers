@@ -4,7 +4,7 @@
 #include "pico/stdlib.h"
 #include "i2c/ht16k33.h"
 
-extern HT16K33 device;
+extern HT16K33 display;
 
 // Declare the function prototypes for button callbacks
 void button_1(uint gpio, uint32_t events);

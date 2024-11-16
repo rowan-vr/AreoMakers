@@ -38,13 +38,14 @@ pico_sdk_init()
 add_executable(a320_transponder_panel
     src/main.c
     src/i2c/ht16k33.c
+    src/spi/mcp3008.c
     src/handlers/buttons.c
 )
 
 target_include_directories(a320_transponder_panel PRIVATE src)
 
 # pull in common dependencies
-target_link_libraries(a320_transponder_panel pico_stdlib hardware_i2c)
+target_link_libraries(a320_transponder_panel pico_stdlib hardware_i2c hardware_spi)
 
 pico_enable_stdio_usb(a320_transponder_panel 1)
 pico_enable_stdio_uart(a320_transponder_panel 0)

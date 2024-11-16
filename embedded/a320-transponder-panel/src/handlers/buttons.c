@@ -3,7 +3,7 @@
 #include "hardware/i2c.h"
 #include "i2c/ht16k33.h"
 
-extern HT16K33 device;
+extern HT16K33 display;
 
 uint8_t value[4] = {2, 0, 0, 0};
 
@@ -20,23 +20,23 @@ void display_squawk()
         0b00000111  // 7
     };
 
-    uint8_t display[5] = {value[0], value[1], -1, value[2], value[3]};
+    uint8_t disp_value[5] = {value[0], value[1], -1, value[2], value[3]};
 
     uint8_t buffer[10];
     for (int i = 0; i < 5; i++)
     {
-        if (display[i] < 0 || display[i] >= 8)
+        if (disp_value[i] < 0 || disp_value[i] >= 8)
         {
             buffer[i * 2] = 0x00;
         }
         else
         {
-            buffer[i * 2] = hexidecimal_displays[display[i]];
+            buffer[i * 2] = hexidecimal_displays[disp_value[i]];
         }
         buffer[i * 2 + 1] = 0x00;
     }
 
-    ht16k33_display_data(&device, buffer, 10);
+    ht16k33_display_data(&display, buffer, 10);
 }
 
 void add_value(uint8_t new_value)
