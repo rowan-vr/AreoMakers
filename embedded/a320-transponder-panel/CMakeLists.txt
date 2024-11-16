@@ -38,6 +38,7 @@ pico_sdk_init()
 add_executable(a320_transponder_panel
     src/main.c
     src/i2c/ht16k33.c
+    src/handlers/buttons.c
 )
 
 target_include_directories(a320_transponder_panel PRIVATE src)
